@@ -1,0 +1,13 @@
+{
+  // For Google Apps Script files
+  "files.associations": {
+    "*.css.html": "css",
+    "*.js.html": "javascript",
+  },
+
+  // Disable validation
+  "css.validate": false,
+  "html.validate.styles": false,
+  "html.validate.scripts": false,
+  "javascript.validate.enable": false,
+}

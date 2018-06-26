@@ -1,0 +1,157 @@
+/**
+ * Base styles
+ */
+body {
+  font-size: 15px;
+  line-height: 21px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #004C00;
+}
+
+h1 {
+  font-size: 1.6em;
+  margin: 20px 0 0 0;
+}
+
+ h4 {
+  margin-top: 21px;
+  margin-bottom: 7px;
+}
+
+h4:first-of-type {
+  margin-top: 0px;
+}
+
+p {
+  margin: 4px 0;
+}
+
+button {
+  font-size: 13px;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 80%;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #357ae8;
+}
+
+
+/**
+ * File display styles
+ */
+.file {
+  padding: 10px;
+  background-color: #eee;
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.file i {
+  margin-right: 4px;
+}
+
+
+/**
+ * Button Link styles
+ */
+input[type="button"].btn-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(66, 132, 230);
+}
+
+input[type="button"].btn-link:hover {
+  text-decoration: underline;
+}
+
+input[type="button"].btn-link:active {
+  box-shadow: none;
+}
+
+
+/**
+ * Selector styles
+ */
+.selector {
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: scroll;
+  font-size: 12px;
+}
+
+.selector ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.selector ul li {
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid #eee;
+}
+
+.selector ul li:hover {
+  background-color: #eee;
+}
+
+
+/**
+ * Block Selector styles
+ */
+ .block-selectors {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.block-selectors li {
+  display: flex;
+  align-items: center;
+  list-style: none inside none;
+  transition: background-color 0.2s linear;
+  cursor: pointer;
+  border: 1px solid #eee;
+  margin-bottom: 12px;
+  padding: 10px;
+}
+
+.block-selectors li:last-of-type {
+  margin-bottom: 0;
+}
+
+.block-selectors li:hover {
+  background-color: #eee;
+}
+
+.block-selectors li.selected {
+  background-color: #eee;
+}
+
+.block-selectors .selector-icon {
+  width: 14%;
+  margin: 0 20px;
+}
+
+.block-selectors .selector-content {
+  width: 86%;
+}
+
+.block-selectors .selector-title {
+  margin-bottom: 4px;
+}
+
+.block-selectors .selector-description {
+  margin: 0;
+  color: #aaa;
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1rem;
+}

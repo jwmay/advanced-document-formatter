@@ -1,0 +1,232 @@
+<style>
+  /**
+    * Alert styles
+    */
+  .alert {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .alert-success {
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+  }
+
+  .alert-warning {
+    background-color: #fcf8e3;
+    border: 1px solid #faebcc;
+    color: #8a6d3b;
+  }
+
+  .alert-error {
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+  }
+
+  .alert-information {
+    background-color: #eee;
+  }
+
+  .close {
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.3;
+    min-width: 0;
+    height: 21px;
+    float: right;
+  }
+
+  .close:hover {
+    background: none;
+    border: none;
+    opacity: 0.6;
+  }
+
+  .close:focus,
+  .close:active {
+    box-shadow: none;
+  }
+
+
+  /**
+    * Card styles
+    */
+  .card {
+    padding: 24px 10px;
+    border-top: 1px solid #ddd;
+    position: relative;
+  }
+
+  .card:last-of-type {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .card .btn-bar > .btn {
+    margin: 0;
+    margin-top: 0;
+    margin-right: 10px;
+  }
+
+  .card .btn-bar > .btn:last-of-type {
+    margin-right: 0;
+  }
+
+
+  /**
+   * Form styles
+   */
+  form {
+    margin-bottom: 24px;
+  }
+  
+  .form-row {
+    display: flex;
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .form-group:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  .form-group label {
+    width: inherit;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .form-group input[type="text"] {
+    width: inherit;
+    height: 30px;
+    font-size: 12px;
+    padding: 0 8px;
+  }
+  
+  .form-group select {
+    width: 90%;
+  }
+  
+  .form-check {
+    margin: 6px 0;
+  }
+  
+  .form-check label {
+    font-weight: normal;
+  }
+  
+  .form-check-header {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .form-check .help-text {
+    padding-left: 25px;
+  }
+  
+  .help-text {
+    display: block;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: normal;
+    line-height: 11px;
+    color: #696969;
+    margin-bottom: 4px;
+  }
+
+
+  /**
+    * Loading message styles and animation
+    */
+  .loading {
+    color: #696969;
+    font-style: italic;
+    z-index: 200;
+    position: absolute;
+    top: 40px;
+    left: 80px;
+  }
+
+  .loading i {
+    animation: spinner 2s infinite linear;
+    vertical-align: middle;
+  }
+
+  .loading span {
+    position: relative;
+    top: 3px;
+  }
+
+  .loading-overlay {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.90;
+  }
+
+  @keyframes spinner {
+    0% {
+      color: #26A0F5;
+      transform: rotate(0deg);
+    }
+    25% {
+      color: #4CAA50;
+    }
+    75% {
+      color: #26A0F5;
+    }
+    100% {
+      color: #26A0F5;
+      transform: rotate(359deg);
+    }
+  }
+
+
+  /**
+   * Dialog-specific styles
+   */
+   .dialog .loading {
+    left: 35%;
+  }
+
+  .dialog .card {
+    padding: 0;
+    border: none;
+  }
+
+  .dialog .card:last-of-type {
+    border: none;
+  }
+
+  
+  /**
+    * Formatting utilities
+    */
+  .hidden {
+    display: none !important;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+
+  .border-0 {
+    border: none;
+  }
+</style>

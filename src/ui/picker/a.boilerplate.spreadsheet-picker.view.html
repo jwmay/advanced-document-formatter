@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('lib.google.styles.css'); ?>
+    <?!= include('lib.font-awesome.css'); ?>
+    <?!= include('lib.display.styles.css'); ?>
+    <style>
+      <?!= include('a.mail-merge.styles.css'); ?>
+    </style>
+  </head>
+  
+  <body>
+    <div id="contents">
+      <div id="loading" class="loading hidden">
+        <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+        <span>Loading...</span>
+      </div>
+      <div id="loading-overlay" class="loading-overlay hidden"></div>
+      <div id="alert"></div>
+      <div id="content"></div>
+    </div>
+    
+    <?!= include('lib.jquery.client.js'); ?>
+    <?!= include('lib.display.client.js'); ?>
+    <script>
+      <?!= include('a.mail-merge.picker.controller.client.js'); ?>
+    </script>
+    <script src="https://apis.google.com/js/api.js?onload=onPickerApiLoad"
+            data-picker="createSpreadsheetPicker"></script>
+  </body>
+</html>
