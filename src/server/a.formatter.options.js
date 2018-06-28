@@ -30,7 +30,11 @@ function getOptions() {
 var Options = function() {
   this.storage = new PropertyStore();
   this.defaultOptions = {
-    // place default options here
+    minimizeSpaceFontSize: 1,
+    tablePaddingTop: 0.05,
+    tablePaddingBottom: 0.05,
+    tablePaddingLeft: 0.05,
+    tablePaddingRight: 0.05,
   };
 };
 

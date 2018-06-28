@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-var ApplicationHanlder = {
+var ApplicationHandler = {
   /**
    * Generic handler for creating instances of the Google Ui object for Google
    * Docs and Google Sheets add-ons.
@@ -23,9 +23,9 @@ var ApplicationHanlder = {
   getUi: function() {
     var config = Configuration.getCurrent();
     var application = config.application;
-    if (this.application === 'document') {
+    if (application === 'document') {
       return DocumentApp.getUi();
-    } else if (this.application === 'spreadsheet') {
+    } else if (application === 'spreadsheet') {
       return SpreadsheetApp.getUi();
     } else {
       throw 'Only documents and spreadsheets are supported';
@@ -54,7 +54,7 @@ function log(message) {
  * @param {string} message The message to display.
  */
 function showAlert(title, message) {
-  var ui = ApplicationHanlder.getUi();
+  var ui = ApplicationHandler.getUi();
   ui.alert(title, message, ui.ButtonSet.OK);
 }
 
@@ -68,7 +68,7 @@ function showAlert(title, message) {
  * @returns {boolean} The response as true (yes) or false (no) boolean.
  */
 function showConfirmation(title, message) {
-  var ui = ApplicationHanlder.getUi();
+  var ui = ApplicationHandler.getUi();
   var result = ui.alert(title, message, ui.ButtonSet.YES_NO);
   if (result === ui.Button.YES) return true;
   return false;
@@ -89,7 +89,7 @@ function showDialog(source, width, height, title) {
       .evaluate()
       .setWidth(width)
       .setHeight(height);
-  ApplicationHanlder.getUi().showModalDialog(ui, title);
+  ApplicationHandler.getUi().showModalDialog(ui, title);
 }
 
 
@@ -101,7 +101,7 @@ function showDialog(source, width, height, title) {
  *    no response is given.
  */
 function showPrompt(message) {
-  var ui = ApplicationHanlder.getUi();
+  var ui = ApplicationHandler.getUi();
   var response = ui.prompt(message);
   if (response.getSelectedButton() === ui.Button.OK) {
     return response.getResponseText();
@@ -121,5 +121,5 @@ function showSidebar(source, title) {
   var html = HtmlService.createTemplateFromFile(source)
       .evaluate()
       .setTitle(title);
-  ApplicationHanlder.getUi().showSidebar(html);
+  ApplicationHandler.getUi().showSidebar(html);
 }

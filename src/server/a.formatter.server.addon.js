@@ -35,8 +35,8 @@ function onOpen(e) {
 
   // Add the plugin add-on menu to the user interface with additional menues
   // available only in debug mode.
-  var ui = DocumentApp.getUi()
-      .createMenu('Simply Mail Merge')
+  var ui = ApplicationHandler.getUi()
+      .createMenu('Advanced Document Formatter')
       .addItem('Start', 'onShowSidebar');
   
   // If debug, display menu options for testing and to clear the
@@ -60,7 +60,7 @@ function onShowSidebar() {
   // cannot perform in onOpen due to Google's restriction to property store
   var options = new Options();
   options.setDefaultOptions();
-  showSidebar('a.boilerplate.sidebar.view', 'Google Apps Script Boilerplate');
+  showSidebar('ui/sidebar/a.formatter.sidebar.view', 'Advanced Document Formatter');
 }
 
 

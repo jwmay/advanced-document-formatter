@@ -2,11 +2,11 @@
 <html>
   <head>
     <base target="_top">
-    <?!= include('lib.google.styles.css'); ?>
-    <?!= include('lib.font-awesome.css'); ?>
-    <?!= include('lib.display.styles.css'); ?>
+    <?!= include('ui/common/lib.google.styles.css'); ?>
+    <?!= include('ui/common/lib.font-awesome.css'); ?>
+    <?!= include('ui/display/lib.display.styles.css'); ?>
     <style>
-      <?!= include('a.mail-merge.styles.css'); ?>
+      <?!= include('ui/common/a.formatter.styles.css'); ?>
     </style>
   </head>
   
@@ -15,8 +15,6 @@
       <div class="logo">
         <img src="https://cdn.rawgit.com/jwmay/mail-merge/3921c562/img/simply-mail-merge-logo.png">
       </div>
-      <!-- If you don't run updateDisplay() when initializing the sidebar/dialog, -->
-      <!--  add .hidden to the #loading and #loading-overlay divs below. -->
       <div id="loading" class="loading">
         <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
         <span id="loading-message">Loading...</span>
@@ -26,10 +24,10 @@
       <div id="content"></div>
     </div>
     
-    <?!= include('lib.jquery.client.js'); ?>
-    <?!= include('lib.display.client.js'); ?>
+    <?!= include('ui/common/lib.jquery.client.js'); ?>
+    <?!= include('ui/display/lib.display.client.js'); ?>
     <script>
-      <?!= include('a.mail-merge.sidebar.controller.client.js'); ?>
+      <?!= include('ui/sidebar/a.formatter.sidebar.controller.client.js'); ?>
     </script>
   </body>
 </html>

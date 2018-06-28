@@ -88,13 +88,22 @@
     margin-bottom: 24px;
   }
   
+  .form-header {
+    margin-bottom: 0;
+  }
+
   .form-row {
     display: flex;
+  }
+
+  .form-row .form-group:last-of-type {
+    margin-bottom: 30px;
   }
   
   .form-group {
     width: 100%;
     margin-bottom: 30px;
+    position: relative;
   }
   
   .form-group:last-of-type {
@@ -112,6 +121,10 @@
     height: 30px;
     font-size: 12px;
     padding: 0 8px;
+  }
+
+  .form-group input[type="number"] {
+    width: 60px;
   }
   
   .form-group select {
@@ -143,6 +156,34 @@
     line-height: 11px;
     color: #696969;
     margin-bottom: 4px;
+  }
+
+  .input-unit {
+    font-size: 11px;
+    color: #a3a3a3;
+    position: absolute;
+    bottom: 0;
+    left: 64px;
+  }
+
+
+  /**
+   * Material Design styles
+   */
+  .materialize input {
+    border: none;
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  .materialize input:focus {
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #a3a3a3;
+  }
+
+  .materialize label {
+    font-size: 12px;
+    font-weight: normal;
   }
 
 
@@ -201,7 +242,7 @@
   /**
    * Dialog-specific styles
    */
-   .dialog .loading {
+  .dialog .loading {
     left: 35%;
   }
 

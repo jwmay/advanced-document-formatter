@@ -19,9 +19,14 @@
 $(function() {
   initialize();
 
-  // Handles the select spreadsheet file button click.
-  $(document).on('click', '#selectSpreadsheet', function() {
-    selectSpreadsheet_onClick();
+  // Handles the minimize space button click
+  $(document).on('click', '#applyMinimizeSpace', function() {
+    minimizeSpace_onClick();
+  });
+
+  // Handles the table padding button click
+  $(document).on('click', '#applyTablePadding', function() {
+    tablePadding_onClick();
   });
 });
 
@@ -35,3 +40,30 @@ function initialize() {
     .withSuccessHandler(updateDisplay)
     .getSidebarDisplay();
 }
+
+
+/**
+ * Handles the minimize space button click.
+ */
+function minimizeSpace_onClick() {
+  var fontSize = $('#minimizeSpaceFontSize').val();
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .minimizeSpace(fontSize);
+  }
+  
+  
+  /**
+   * Handles the apply table padding button click.
+   */
+  function tablePadding_onClick() {
+    var padding = {
+      tablePaddingTop: $('#tablePaddingTop').val(),
+      tablePaddingBottom: $('#tablePaddingBottom').val(),
+      tablePaddingLeft: $('#tablePaddingLeft').val(),
+      tablePaddingRight: $('#tablePaddingRight').val()
+    };
+    google.script.run
+      .withSuccessHandler(updateDisplay)
+      .tablePadding(padding);
+  }
