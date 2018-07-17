@@ -39,3 +39,23 @@ code {
   font-weight: bold;
   color: #357ae8;
 }
+
+/**
+ * Fix Google default button
+ */
+input[type="button"],
+input[type="button"]:focus {
+  background: linear-gradient(top, #f8f8f8, #f1f1f1);
+  border: 1px solid #c6c6c6;
+  color: #111;
+  text-decoration: none;
+}
+
+input[type="button"]:focus {
+  border: 1px solid #696969;
+}
+
+input[type="button"].action:focus {
+  color: white;
+  border: 1px solid white;
+}
