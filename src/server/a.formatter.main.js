@@ -26,5 +26,10 @@ function getDefaultConfiguration_() {
      * Docs addon or 'spreadsheet' for a Google Sheets addon.
      */
     application: 'document',
+
+    /**
+     * Current addon version.
+     */
+    version: '0.2',
   };
 }
