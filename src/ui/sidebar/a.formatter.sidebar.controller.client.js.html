@@ -24,9 +24,14 @@ $(function() {
     minimizeSpace_onClick();
   });
 
-  // Handles the table padding button click
+  // Handles the apply table padding button click
   $(document).on('click', '#applyTablePadding', function() {
-    tablePadding_onClick();
+    setTablePadding_onClick();
+  });
+  
+  // Handles the get table padding button click
+  $(document).on('click', '#getTablePadding', function() {
+    getTablePadding_onClick();
   });
 });
 
@@ -50,20 +55,41 @@ function minimizeSpace_onClick() {
   google.script.run
     .withSuccessHandler(updateDisplay)
     .minimizeSpace(fontSize);
-  }
+}
   
   
-  /**
-   * Handles the apply table padding button click.
-   */
-  function tablePadding_onClick() {
-    var padding = {
-      tablePaddingTop: $('#tablePaddingTop').val(),
-      tablePaddingBottom: $('#tablePaddingBottom').val(),
-      tablePaddingLeft: $('#tablePaddingLeft').val(),
-      tablePaddingRight: $('#tablePaddingRight').val()
-    };
-    google.script.run
-      .withSuccessHandler(updateDisplay)
-      .tablePadding(padding);
-  }
+/**
+ * Handles the apply table padding button click.
+ */
+function setTablePadding_onClick() {
+  var padding = {
+    tablePaddingTop: $('#tablePaddingTop').val(),
+    tablePaddingBottom: $('#tablePaddingBottom').val(),
+    tablePaddingLeft: $('#tablePaddingLeft').val(),
+    tablePaddingRight: $('#tablePaddingRight').val()
+  };
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .setTablePadding(padding);
+}
+
+
+/**
+ * Handles the get table padding button click.
+ */
+function getTablePadding_onClick() {
+  google.script.run
+    .withSuccessHandler(function(padding) {
+      // Set the padding values in the display
+      if (padding.hasOwnProperty('top')) {
+        $('#tablePaddingTop').val(padding.top);
+        $('#tablePaddingBottom').val(padding.bottom);
+        $('#tablePaddingLeft').val(padding.left);
+        $('#tablePaddingRight').val(padding.right);
+      } else {
+        // Display an error message
+        updateDisplay(padding);
+      }
+    })
+    .getTablePadding();
+}

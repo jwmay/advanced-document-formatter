@@ -128,6 +128,8 @@ SidebarDisplay.prototype.getTablePaddingController = function() {
         '<div class="btn-bar">' +
           '<input type="button" class="btn action" value="Apply padding" ' +
               'id="applyTablePadding">' +
+          '<input type="button" class="btn" value="Get padding" ' +
+              'id="getTablePadding">' +
         '</div>' +
       '</form>';
   return getDisplayObject('card', content, 'tablePaddingController');

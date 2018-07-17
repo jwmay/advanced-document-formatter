@@ -37,8 +37,9 @@ function minimizeSpace(fontSize) {
  * 
  * @param {object} padding An object containing the padding value for each side
  *    of a table cell.
+ * @returns {DisplayObject} A DisplayObject instance with the results.
  */
-function tablePadding(padding) {
+function setTablePadding(padding) {
   // Save the padding values from the sidebar
   var options = new Options();
   for (var side in padding) {
@@ -52,8 +53,23 @@ function tablePadding(padding) {
 
   // Change the padding of the table cell(s)
   var formatter = new Formatter();
-  return formatter.tablePadding();
+  return formatter.setTablePadding();
 }
+
+
+/**
+ * Returns the padding for the selected table cell or the first table cell in
+ * a selection of table cells.
+ * 
+ * @returns {Object|DisplayObject} An object containing the padding values or
+ *    a DisplayObject instance with an error message.
+ */
+function getTablePadding() {
+  var formatter = new Formatter();
+  return formatter.getTablePadding();
+}
+
+
 
 
 /**
@@ -68,12 +84,59 @@ var Formatter = function() {
 
 
 /**
- * Converts inches to points and returns the converted value.
+ * Returns an array of TableCell objects based on the user's selection.
  * 
- * @param {number} inches The value in inches to convert.
+ * @returns {TableCell[]} An array of selected table cells.
  */
-Formatter.prototype.inchesToPoints = function(inches) {
-  return (inches * 72);
+Formatter.prototype.getTableCells = function() {
+  var tableCells = [];
+  if (this.cursor) {
+    var element = this.cursor.getElement().getParent();
+    if (element.getType() === DocumentApp.ElementType.TABLE_CELL) {
+      tableCells.push(element);
+      return tableCells;
+    } else {
+      return null;
+    }
+  } else if (this.selection) {
+    var elements = this.selection.getRangeElements();
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      if (element.getElement().getType() === DocumentApp.ElementType.TABLE_CELL) {
+        tableCells.push(element.getElement());
+      }
+    }
+    return tableCells;
+  } else {
+    return null;
+  }
+}
+
+
+/**
+ * Returns an object of table cell padding values for the first selected cell
+ * or a DisplayObject instance if there was an error.
+ * 
+ * The padding values have the following keys for the sides of the table cell:
+ * top, bottom, left, and right.
+ * 
+ * @returns {Object|DisplayObject} An object containing the padding values or
+ *    a DisplayObject instance with an error message.
+ */
+Formatter.prototype.getTablePadding = function() {
+  var tableCells = this.getTableCells();
+  if (tableCells !== null) {
+    var tableCell = tableCells[0];
+    var padding = {
+      top: this.pointsToInches(tableCell.getPaddingTop()).toFixed(3),
+      bottom: this.pointsToInches(tableCell.getPaddingBottom()).toFixed(3),
+      left: this.pointsToInches(tableCell.getPaddingLeft()).toFixed(3),
+      right: this.pointsToInches(tableCell.getPaddingRight()).toFixed(3)
+    }
+    return padding;
+  } else {
+    return getError('Select a table cell to get padding');
+  }
 }
 
 
@@ -109,7 +172,7 @@ Formatter.prototype.minimizeSpace = function() {
  * 
  * @param {TableCell} tableCell The table cell element to set padding.
  */
-Formatter.prototype.setPadding = function(tableCell) {
+Formatter.prototype.setTableCellPadding = function(tableCell) {
   var padding = {
     top: this.inchesToPoints(this.options.tablePaddingTop),
     bottom: this.inchesToPoints(this.options.tablePaddingBottom),
@@ -130,25 +193,35 @@ Formatter.prototype.setPadding = function(tableCell) {
  * 
  * @returns {DisplayObject} A DisplayObject instance with the results.
  */
-Formatter.prototype.tablePadding = function() {
-  if (this.cursor) {
-    var element = this.cursor.getElement().getParent();
-    if (element.getType() === DocumentApp.ElementType.TABLE_CELL) {
-      this.setPadding(element);
-      return getSuccess('Table padding applied');
-    } else {
-      return getError('Place cursor in a table cell to format');
-    }
-  } else if (this.selection) {
-    var elements = this.selection.getRangeElements();
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i];
-      if (element.getElement().getType() === DocumentApp.ElementType.TABLE_CELL) {
-        this.setPadding(element.getElement());
-      }
+Formatter.prototype.setTablePadding = function() {
+  var tableCells = this.getTableCells();
+  if (tableCells !== null) {
+    for (var i = 0; i < tableCells.length; i++) {
+      var tableCell = tableCells[i];
+      this.setTableCellPadding(tableCell);
     }
     return getSuccess('Table padding applied');
   } else {
-    return getError('Place cursor in a table cell to format');
+    return getError('Select a table cell to format');
   }
+}
+
+
+/**
+ * Converts inches to points and returns the converted value.
+ * 
+ * @param {number} inches The value in inches to convert.
+ */
+Formatter.prototype.inchesToPoints = function(inches) {
+  return (inches * 72);
+}
+
+
+/**
+ * Converts points to inches and returns the converted value.
+ * 
+ * @param {number} points The value in points to convert.
+ */
+Formatter.prototype.pointsToInches = function(points) {
+  return (points / 72);
 }
